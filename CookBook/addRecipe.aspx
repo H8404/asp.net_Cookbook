@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Add recipe to CookBook" Language="C#" MasterPageFile="~/Master1.master" AutoEventWireup="true" CodeFile="addRecipe.aspx.cs" Inherits="addRecipe" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link href="CSS/addRecipe.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
@@ -9,12 +11,10 @@
                 <asp:Label runat="server" ID="lbmsg" Text="" CssClass="label"></asp:Label>
                 <div class="form-group">
                     <label>Title: </label>
-                    <!--<asp:Label ID="lbTitle" runat="server" Text="Title: "></asp:Label>-->
                     <asp:TextBox ID="tbTitle" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <label>Description: </label>
-                    <!-- <asp:Label ID="lbDescription" runat="server" Text="Description: "></asp:Label>-->
                     <asp:TextBox ID="tbDescription" runat="server" Height="100px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
@@ -30,8 +30,12 @@
                     <asp:TextBox ID="TextBox1" runat="server" Height="250px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <label>Picture of endproduct: </label>
-                    <asp:FileUpload id="FileUploadControl" runat="server" />
+                    <label>Picture of endproduct</label>
+                    <br />
+                    <label class="btn btn-default btn-file">
+                        Browse <asp:FileUpload id="FileUploadControl" runat="server"  onchange="$('#upload-file-info').html($(this).val());"/>
+                    </label>
+                    <span class='label label-info' id="upload-file-info"></span>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSaveToDatabase_Click"/>

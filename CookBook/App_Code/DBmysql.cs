@@ -35,5 +35,18 @@ namespace CookBook.Data
                 throw ex;
             }
         }
+
+       /* public string InsertIntoRecipe(string cs)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }*/
     }
 }
