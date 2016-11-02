@@ -25,8 +25,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#about">HOME</a></li>
-                            <li><a href="#services">ADD RECIPE</a></li>
+                            <li><a href="home.aspx">HOME</a></li>
+                            <li><a href="addRecipe.aspx">ADD RECIPE</a></li>
                             <li><a href="#portfolio">VIEW RECIPES</a></li>
                         </ul>
                     </div>
