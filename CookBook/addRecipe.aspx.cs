@@ -18,9 +18,10 @@ public partial class addRecipe : System.Web.UI.Page
         try
         {
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            DataTable dt = CookBook.Data.DBmysql.GetMySql(cs);
+            CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+            /*DataTable dt = CookBook.Data.DBmysql.GetMySql(cs);
             gvTest.DataSource = dt;
-            gvTest.DataBind();
+            gvTest.DataBind();*/
         }
         catch (Exception ex)
         {

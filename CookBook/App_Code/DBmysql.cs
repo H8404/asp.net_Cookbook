@@ -36,17 +36,32 @@ namespace CookBook.Data
             }
         }
 
-       /* public string InsertIntoRecipe(string cs)
+        public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
         {
+            var con = new MySqlConnection(cs);
             try
             {
-
+                MySqlCommand command = con.CreateCommand();
+                command.CommandText = "INSERT INTO recipes (title,description,category,ingredients,steps,U_id) VALUES (?title,?description,?category,?ingredients,?steps,?U_id)";
+                command.Parameters.AddWithValue("?title",title);
+                command.Parameters.AddWithValue("?description", description);
+                command.Parameters.AddWithValue("?category", category);
+                command.Parameters.AddWithValue("?ingredients", ingredients);
+                command.Parameters.AddWithValue("?steps", steps);
+                command.Parameters.AddWithValue("?U_id", 1);
+                con.Open();
+                command.ExecuteNonQuery();
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
-        }*/
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

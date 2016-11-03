@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label>Steps: </label>
-                    <asp:TextBox ID="TextBox1" runat="server" Height="250px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbSteps" runat="server" Height="250px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <label>Picture of endproduct</label>
