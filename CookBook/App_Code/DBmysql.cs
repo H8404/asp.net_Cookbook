@@ -36,7 +36,7 @@ namespace CookBook.Data
             }
         }
 
-        public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
+        public static string InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
         {
             var con = new MySqlConnection(cs);
             try
@@ -51,7 +51,7 @@ namespace CookBook.Data
                 command.Parameters.AddWithValue("?U_id", 1);
                 con.Open();
                 command.ExecuteNonQuery();
-                
+                return "Recipe was added succesfully!";
             }
             catch (Exception ex)
             {

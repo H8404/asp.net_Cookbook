@@ -28,6 +28,7 @@
                             <li><a href="home.aspx">HOME</a></li>
                             <li><a href="addRecipe.aspx">ADD RECIPE</a></li>
                             <li><a href="#portfolio">VIEW RECIPES</a></li>
+                            <li><a href="login.aspx">LOG IN</a></li>
                         </ul>
                     </div>
                 </div>

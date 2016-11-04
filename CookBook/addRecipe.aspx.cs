@@ -18,7 +18,7 @@ public partial class addRecipe : System.Web.UI.Page
         try
         {
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+            lbmsg.Text = CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
             /*DataTable dt = CookBook.Data.DBmysql.GetMySql(cs);
             gvTest.DataSource = dt;
             gvTest.DataBind();*/
@@ -26,6 +26,14 @@ public partial class addRecipe : System.Web.UI.Page
         catch (Exception ex)
         {
             lbmsg.Text = ex.Message;
+        }
+        finally
+        {
+            tbTitle.Text = "";
+            tbDescription.Text = "";
+            tbCategory.Text = "";
+            tbIngredients.Text = "";
+            tbSteps.Text = "";
         }
     }
 }

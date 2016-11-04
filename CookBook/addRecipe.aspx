@@ -8,7 +8,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class=" col-md-4 col-md-offset-4 bg-grey">
-                <asp:Label runat="server" ID="lbmsg" Text="" CssClass="label"></asp:Label>
                 <div class="form-group">
                     <label>Title: </label>
                     <asp:TextBox ID="tbTitle" runat="server" CssClass="form-control"></asp:TextBox>
@@ -38,9 +37,28 @@
                     <span class='label label-info' id="upload-file-info"></span>
                 </div>
                 <div class="form-group">
-                    <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSaveToDatabase_Click"/>
+                    <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSaveToDatabase_Click" data-toggle="modal" data-target="#myModal"/>
                 </div>
                 <asp:GridView ID="gvTest" runat="server"></asp:GridView>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <asp:Label runat="server" ID="lbmsg" Text="" CssClass="label"></asp:Label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+      
+                    </div>
+                </div>
             </div>
         </div>
     </div>
