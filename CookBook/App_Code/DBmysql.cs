@@ -17,7 +17,30 @@ namespace CookBook.Data
         {
             try
             {
-                string sql = "SELECT title, description FROM recipes ";
+                string sql = "SELECT * FROM recipes ";
+                using (MySqlConnection conn = new MySqlConnection(cs))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable GetRecipe(string cs, string id)
+        {
+            try
+            {
+                string sql = "SELECT * FROM recipes WHERE id="+id;
                 using (MySqlConnection conn = new MySqlConnection(cs))
                 {
                     conn.Open();
