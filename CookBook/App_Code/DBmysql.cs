@@ -13,11 +13,11 @@ namespace CookBook.Data
 {
     public class DBmysql
     {
-        public static DataTable GetMySql(string cs)
+        public static DataTable GetRecipeInfo(string cs)
         {
             try
             {
-                string sql = "SELECT * FROM users ";
+                string sql = "SELECT title, description FROM recipes ";
                 using (MySqlConnection conn = new MySqlConnection(cs))
                 {
                     conn.Open();

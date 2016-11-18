@@ -15,7 +15,7 @@
                 <div class="text-center col-md-4 col-md-offset-4 well well-lg loginform">
                     <h2>Log in to CookBook</h2>
                     <div class="form-group">
-                        <label>Email:</label>
+                        <label>Username:</label>
                         <asp:TextBox runat="server" TextMode="Email" CssClass="form-control" ID="tbEmail"></asp:TextBox>
                     </div>
                     <div class="form-group">

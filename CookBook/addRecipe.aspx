@@ -4,6 +4,9 @@
     <link href="CSS/addRecipe.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="jumbotron" Runat="Server">
+    <h1>CookBook</h1>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row">

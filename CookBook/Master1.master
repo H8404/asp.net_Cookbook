@@ -27,15 +27,14 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="home.aspx">HOME</a></li>
                             <li><a href="addRecipe.aspx">ADD RECIPE</a></li>
-                            <li><a href="#portfolio">VIEW RECIPES</a></li>
+                            <li><a href="showRecipes.aspx">VIEW RECIPES</a></li>
                             <li><a href="login.aspx">LOG IN</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <div class="jumbotron text-center">
-                <h1>Welcome to CookBook</h1> 
-                <p>We specialize in blablabla</p> 
+                <asp:ContentPlaceHolder ID="jumbotron" runat="server"></asp:ContentPlaceHolder>
             </div>
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

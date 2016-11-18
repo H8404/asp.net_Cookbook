@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="jumbotron" Runat="Server">
+    <h1>Welcome to CookBook</h1>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid text-center bg-grey">
         <div class="row text-center">
