@@ -8,8 +8,13 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row">
-            <div runat="server" id="divData" class="col-md-6 col-md-offset-3 bg-grey list-group">
+            <div class="col-md-6 col-md-offset-3 bg-grey list-group">
+                <div class="btn-group">
+                    <asp:DropDownList ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+                <div runat="server" id="divData">
 
+                </div>
             </div>
         </div>
     </div>

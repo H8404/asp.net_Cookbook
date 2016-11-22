@@ -59,22 +59,21 @@ namespace CookBook.Data
             }
         }
 
-        public static string InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
+        public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
         {
             var con = new MySqlConnection(cs);
             try
             {
                 MySqlCommand command = con.CreateCommand();
-                command.CommandText = "INSERT INTO recipes (title,description,category,ingredients,steps,U_id) VALUES (?title,?description,?category,?ingredients,?steps,?U_id)";
-                command.Parameters.AddWithValue("?title",title);
-                command.Parameters.AddWithValue("?description", description);
-                command.Parameters.AddWithValue("?category", category);
-                command.Parameters.AddWithValue("?ingredients", ingredients);
-                command.Parameters.AddWithValue("?steps", steps);
-                command.Parameters.AddWithValue("?U_id", 1);
+                command.CommandText = "INSERT INTO recipes (title,description,category,ingredients,steps,U_id) VALUES (@title,@description,@category,@ingredients,@steps,@U_id)";
+                command.Parameters.AddWithValue("@title",title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@category", category);
+                command.Parameters.AddWithValue("@ingredients", ingredients);
+                command.Parameters.AddWithValue("@steps", steps);
+                command.Parameters.AddWithValue("@U_id", 1);
                 con.Open();
                 command.ExecuteNonQuery();
-                return "Recipe was added succesfully!";
             }
             catch (Exception ex)
             {
@@ -86,5 +85,114 @@ namespace CookBook.Data
                 con.Close();
             }
         }
+
+        public static string getrecipeTitle(string id)
+        {
+            string titleFromDB = "";
+
+            try
+            {
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+                DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    titleFromDB = dr["title"].ToString();
+                }
+                return titleFromDB;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static string getrecipeDescription(string id)
+        {
+            string descriptionFromDB = "";
+
+            try
+            {
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+                DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    descriptionFromDB = dr["description"].ToString();
+                }
+                return descriptionFromDB;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static string getrecipeSteps(string id)
+        {
+            string stepsFromDB = "";
+
+            try
+            {
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+                DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    stepsFromDB = dr["steps"].ToString();
+                }
+                stepsFromDB = stepsFromDB.Replace(System.Environment.NewLine, "<br/>");
+                return stepsFromDB;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static string getrecipeIngredients(string id)
+        {
+            string ingredientsFromDB = "";
+
+            try
+            {
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+                DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ingredientsFromDB = dr["ingredients"].ToString();
+                }
+                ingredientsFromDB = ingredientsFromDB.Replace(System.Environment.NewLine, "<br/>");
+                return ingredientsFromDB;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static void RemoveRecipe(string cs, string id)
+        {
+            var con = new MySqlConnection(cs);
+            try
+            {
+                
+                MySqlCommand command = con.CreateCommand();
+                command.CommandText = "DELETE FROM recipes WHERE id = " + id;
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
     }
 }

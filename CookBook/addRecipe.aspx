@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="CSS/addRecipe.css" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="jumbotron" Runat="Server">
     <h1>CookBook</h1>
@@ -40,29 +39,31 @@
                     <span class='label label-info' id="upload-file-info"></span>
                 </div>
                 <div class="form-group">
-                    <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSaveToDatabase_Click" data-toggle="modal" data-target="#myModal"/>
-                </div>
-                <asp:GridView ID="gvTest" runat="server"></asp:GridView>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-    
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            <div class="modal-body">
-                                <asp:Label runat="server" ID="lbmsg" Text="" CssClass="label"></asp:Label>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-      
-                    </div>
+                    <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default"  OnClick="btnSaveToDatabase_Click"/>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Bootstrap Modal Dialog -->
+    <div class="modal fade"  id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="z-index:2">
+            <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
+            </div>
+            <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

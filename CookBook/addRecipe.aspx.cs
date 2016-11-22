@@ -18,14 +18,11 @@ public partial class addRecipe : System.Web.UI.Page
         try
         {
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            lbmsg.Text = CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
-            /*DataTable dt = CookBook.Data.DBmysql.GetMySql(cs);
-            gvTest.DataSource = dt;
-            gvTest.DataBind();*/
+            CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
         }
         catch (Exception ex)
         {
-            lbmsg.Text = ex.Message;
+            throw ex;
         }
         finally
         {
@@ -34,6 +31,11 @@ public partial class addRecipe : System.Web.UI.Page
             tbCategory.Text = "";
             tbIngredients.Text = "";
             tbSteps.Text = "";
+            lblModalTitle.Text = "Recipe was added succesfully!";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
+
         }
     }
+
 }

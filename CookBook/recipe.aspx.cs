@@ -13,50 +13,42 @@ public partial class recipe : System.Web.UI.Page
         if (!IsPostBack)
         {
             string idFromURL = Request.QueryString["id"];
-            txtHeader.InnerText = getrecipeTitle(idFromURL);
-            txtDescription.InnerText = getrecipeDescription(idFromURL);
-            txtSteps.InnerText = getrecipeSteps(idFromURL);
+            txtHeader.InnerText = CookBook.Data.DBmysql.getrecipeTitle(idFromURL);
+            txtDescription.InnerText = CookBook.Data.DBmysql.getrecipeDescription(idFromURL);
+            txtIngredients.InnerHtml = CookBook.Data.DBmysql.getrecipeIngredients(idFromURL);
+            txtSteps.InnerHtml = CookBook.Data.DBmysql.getrecipeSteps(idFromURL);
         }
     }
 
-    private string getrecipeTitle(string id)
+
+    protected void btnRemove_Click(object sender, EventArgs e)
     {
-        string titleFromDB = "";
-
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-        DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
-        foreach (DataRow dr in dt.Rows)
+        try
         {
-            titleFromDB = dr["title"].ToString();
+            string idFromURL = Request.QueryString["id"];
+            string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+            CookBook.Data.DBmysql.RemoveRecipe(cs, idFromURL);
         }
-        return titleFromDB;
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
+        finally
+        {
+            Response.Redirect("showRecipes.aspx");
+        }
     }
 
-    private string getrecipeDescription(string id)
+    protected void btnEdit_Click(object sender, EventArgs e)
     {
-        string descriptionFromDB = "";
 
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-        DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
-        foreach (DataRow dr in dt.Rows)
-        {
-            descriptionFromDB = dr["description"].ToString();
-        }
-        return descriptionFromDB;
     }
 
-    private string getrecipeSteps(string id)
+    protected void btnConfirm_Click(object sender, EventArgs e)
     {
-        string descriptionFromDB = "";
-
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-        DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
-        foreach (DataRow dr in dt.Rows)
-        {
-            descriptionFromDB = dr["steps"].ToString();
-        }
-        return descriptionFromDB;
+        lblModalTitle.Text = "Do you really want to delete this recipe?";
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+        upModal.Update();
     }
-
-
 }
