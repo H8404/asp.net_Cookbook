@@ -10,7 +10,11 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 bg-grey list-group">
                 <div class="btn-group">
-                    <asp:DropDownList ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged"></asp:DropDownList>
+                    <div class="dropdown open">
+                        <asp:DropDownList CssClass="dropdown-menu" aria-labelledby="dropdownMenuButton" ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged">
+                            <asp:ListItem >Select Category</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
                 </div>
                 <div runat="server" id="divData">
 

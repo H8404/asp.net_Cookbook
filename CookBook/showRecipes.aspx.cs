@@ -35,7 +35,10 @@ public partial class showRecipes : System.Web.UI.Page
         DataTable dt = CookBook.Data.DBmysql.GetRecipeInfo(cs);
         foreach (DataRow dr in dt.Rows)
         {
-            ddCategory.Items.Add(dr["category"].ToString());
+            if (ddCategory.Items.FindByText(dr["category"].ToString()) == null)
+            {
+                ddCategory.Items.Add(dr["category"].ToString());
+            }
         }
     }
 
