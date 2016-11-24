@@ -119,7 +119,9 @@ namespace CookBook.Data
                 {
                     descriptionFromDB = dr["description"].ToString();
                 }
+                descriptionFromDB = descriptionFromDB.Replace(System.Environment.NewLine, "<br/>");
                 return descriptionFromDB;
+ 
             }
             catch (Exception ex)
             {
