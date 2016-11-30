@@ -31,8 +31,9 @@ public partial class recipe : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-
-            throw ex;
+            lblModalTitle.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
         }
         finally
         {

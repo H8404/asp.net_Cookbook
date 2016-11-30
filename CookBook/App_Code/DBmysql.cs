@@ -102,8 +102,7 @@ namespace CookBook.Data
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                return ex.Message;
             }
         }
 
@@ -124,7 +123,7 @@ namespace CookBook.Data
             catch (Exception ex)
             {
 
-                throw ex;
+                return ex.Message;
             }
         }
 
@@ -146,7 +145,7 @@ namespace CookBook.Data
             catch (Exception ex)
             {
 
-                throw ex;
+                return ex.Message;
             }
         }
 
@@ -168,7 +167,7 @@ namespace CookBook.Data
             catch (Exception ex)
             {
 
-                throw ex;
+                return ex.Message;
             }
         }
 
