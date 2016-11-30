@@ -17,8 +17,8 @@
                 <hr />
                 <p runat="server" id="txtSteps" style="font-size:16px"></p>
                 <hr />
-                <div id="buttons" class="btnCss">
-                    <asp:Button ID="btnEdit" CssClass="btn btn-default" style="color:#ff944d" runat="server" Text="Edit" OnClick="btnEdit_Click"/>
+                <div id="buttons" class="btnCss" style="margin-bottom:20px;">
+                    <a id="btnEdit" runat="server" class="btn btn-default" style="color:#ff944d" href="editRecipe.aspx">Edit</a>
                     <asp:Button ID="btnConfirm" CssClass="btn btn-default" style="color:#ff944d; margin-left:10px;" runat="server" Text="Delete" OnClick="btnConfirm_Click"/>
                 </div>
             </div>

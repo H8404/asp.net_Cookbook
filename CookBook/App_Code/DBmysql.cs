@@ -86,6 +86,33 @@ namespace CookBook.Data
             }
         }
 
+        public static void EditRecipe(string cs,string id, string title, string description, string category, string ingredients, string steps)
+        {
+            var con = new MySqlConnection(cs);
+            try
+            {
+                MySqlCommand command = con.CreateCommand();
+                command.CommandText = "REPLACE INTO recipes (title,description,category,ingredients,steps) VALUES (@title,@description,@category,@ingredients,@steps) WHERE (id) = (@id)";
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@category", category);
+                command.Parameters.AddWithValue("@ingredients", ingredients);
+                command.Parameters.AddWithValue("@steps", steps);
+                command.Parameters.AddWithValue("@id", id);
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public static string getrecipeTitle(string id)
         {
             string titleFromDB = "";
@@ -118,9 +145,30 @@ namespace CookBook.Data
                 {
                     descriptionFromDB = dr["description"].ToString();
                 }
-                descriptionFromDB = descriptionFromDB.Replace(System.Environment.NewLine, "<br/>");
                 return descriptionFromDB;
  
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+        public static string getrecipeCategory(string id)
+        {
+            string categoryFromDB = "";
+
+            try
+            {
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+                DataTable dt = CookBook.Data.DBmysql.GetRecipe(cs, id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    categoryFromDB = dr["category"].ToString();
+                }
+                return categoryFromDB;
+
             }
             catch (Exception ex)
             {
@@ -141,7 +189,6 @@ namespace CookBook.Data
                 {
                     stepsFromDB = dr["steps"].ToString();
                 }
-                stepsFromDB = stepsFromDB.Replace(System.Environment.NewLine, "<br/>");
                 return stepsFromDB;
             }
             catch (Exception ex)
@@ -163,7 +210,6 @@ namespace CookBook.Data
                 {
                     ingredientsFromDB = dr["ingredients"].ToString();
                 }
-                ingredientsFromDB = ingredientsFromDB.Replace(System.Environment.NewLine, "<br/>");
                 return ingredientsFromDB;
             }
             catch (Exception ex)

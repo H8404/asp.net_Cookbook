@@ -13,10 +13,18 @@ public partial class recipe : System.Web.UI.Page
         if (!IsPostBack)
         {
             string idFromURL = Request.QueryString["id"];
-            txtHeader.InnerText = CookBook.Data.DBmysql.getrecipeTitle(idFromURL);
-            txtDescription.InnerHtml = CookBook.Data.DBmysql.getrecipeDescription(idFromURL);
-            txtIngredients.InnerHtml = CookBook.Data.DBmysql.getrecipeIngredients(idFromURL);
-            txtSteps.InnerHtml = CookBook.Data.DBmysql.getrecipeSteps(idFromURL);
+            btnEdit.HRef = "editRecipe.aspx?id=" + idFromURL;
+            string header = CookBook.Data.DBmysql.getrecipeTitle(idFromURL);
+            string description = CookBook.Data.DBmysql.getrecipeDescription(idFromURL);
+            string ingredients = CookBook.Data.DBmysql.getrecipeIngredients(idFromURL);
+            string steps = CookBook.Data.DBmysql.getrecipeSteps(idFromURL);
+            description = description.Replace(System.Environment.NewLine, "<br/>");
+            ingredients = ingredients.Replace(System.Environment.NewLine, "<br/>");
+            steps = steps.Replace(System.Environment.NewLine, "<br/>");
+            txtHeader.InnerText = header;
+            txtDescription.InnerHtml = description;
+            txtIngredients.InnerHtml = ingredients;
+            txtSteps.InnerHtml = steps;
         }
     }
 
@@ -41,10 +49,6 @@ public partial class recipe : System.Web.UI.Page
         }
     }
 
-    protected void btnEdit_Click(object sender, EventArgs e)
-    {
-
-    }
 
     protected void btnConfirm_Click(object sender, EventArgs e)
     {
