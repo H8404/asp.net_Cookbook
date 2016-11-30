@@ -14,7 +14,7 @@ public partial class recipe : System.Web.UI.Page
         {
             string idFromURL = Request.QueryString["id"];
             txtHeader.InnerText = CookBook.Data.DBmysql.getrecipeTitle(idFromURL);
-            txtDescription.InnerText = CookBook.Data.DBmysql.getrecipeDescription(idFromURL);
+            txtDescription.InnerHtml = CookBook.Data.DBmysql.getrecipeDescription(idFromURL);
             txtIngredients.InnerHtml = CookBook.Data.DBmysql.getrecipeIngredients(idFromURL);
             txtSteps.InnerHtml = CookBook.Data.DBmysql.getrecipeSteps(idFromURL);
         }

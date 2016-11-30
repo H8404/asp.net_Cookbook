@@ -3,18 +3,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="jumbotron" Runat="Server">
-    <h1 runat="server" id="txtHeader"></h1>
+    <h1 >CookBook</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
         <div class="row">
-            <div class=" col-md-4 col-md-offset-4 bg-grey">
-                <p runat="server" id="txtDescription"></p>
-                <p runat="server" id="txtIngredients"></p>
-                <p runat="server" id="txtSteps"></p>
-                <div id="buttons">
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click"/>
-                    <asp:Button ID="btnConfirm" runat="server" Text="Delete" OnClick="btnConfirm_Click"/>
+            <div class=" col-md-6 col-md-offset-3 ">
+                <h2 runat="server" id="txtHeader" style="color:#ff944d"></h2>
+                <hr />
+                <p runat="server" id="txtDescription" style="font-size:16px"></p>
+                <hr />
+                <p runat="server" id="txtIngredients" style="font-size:16px"></p>
+                <hr />
+                <p runat="server" id="txtSteps" style="font-size:16px"></p>
+                <hr />
+                <div id="buttons" class="btnCss">
+                    <asp:Button ID="btnEdit" CssClass="btn btn-default" style="color:#ff944d" runat="server" Text="Edit" OnClick="btnEdit_Click"/>
+                    <asp:Button ID="btnConfirm" CssClass="btn btn-default" style="color:#ff944d; margin-left:10px;" runat="server" Text="Delete" OnClick="btnConfirm_Click"/>
                 </div>
             </div>
         </div>
