@@ -7,20 +7,16 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 bg-grey list-group">
-                <div class="btn-group">
-                    <div class="dropdown open">
-                        <asp:DropDownList CssClass="dropdown-menu" aria-labelledby="dropdownMenuButton" ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged">
+            <div class="col-md-6 col-md-offset-3 bg-grey row">
+                    <div class="dropdown open"  >
+                        <asp:DropDownList CssClass="dropdown-menu" aria-labelledby="dropdownMenuButton" ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged"  >
                             <asp:ListItem >Select Category</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                </div>
-                <div runat="server" id="divData">
+                <div runat="server" id="divData" class="row" style="margin-top:60px;">
 
                 </div>
             </div>
-        </div>
     </div>
      <!-- Bootstrap Modal Dialog -->
     <div class="modal fade"  id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -59,6 +59,29 @@ namespace CookBook.Data
             }
         }
 
+        public static DataTable GetRecipeByGategory(string cs, string category)
+        {
+            try
+            {
+                string sql = "SELECT * FROM recipes WHERE category=" + category;
+                using (MySqlConnection conn = new MySqlConnection(cs))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
         {
             var con = new MySqlConnection(cs);
@@ -92,13 +115,14 @@ namespace CookBook.Data
             try
             {
                 MySqlCommand command = con.CreateCommand();
-                command.CommandText = "REPLACE INTO recipes (title,description,category,ingredients,steps) VALUES (@title,@description,@category,@ingredients,@steps) WHERE (id) = (@id)";
+                command.CommandText = "REPLACE INTO recipes (id,title,description,category,ingredients,steps,U_id) VALUES (@id,@title,@description,@category,@ingredients,@steps,@U_id)";
+                command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@title", title);
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@category", category);
                 command.Parameters.AddWithValue("@ingredients", ingredients);
                 command.Parameters.AddWithValue("@steps", steps);
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@U_id", 1);
                 con.Open();
                 command.ExecuteNonQuery();
             }
@@ -240,6 +264,7 @@ namespace CookBook.Data
                 con.Close();
             }
         }
+
 
     }
 }

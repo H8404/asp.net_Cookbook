@@ -22,8 +22,20 @@ public partial class editRecipe : System.Web.UI.Page
 
     protected void btnSaveChanges_Click(object sender, EventArgs e)
     {
-        string idFromURL = Request.QueryString["id"];
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-        CookBook.Data.DBmysql.EditRecipe(cs, idFromURL, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+        try
+        {
+            string idFromURL = Request.QueryString["id"];
+            string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+            CookBook.Data.DBmysql.EditRecipe(cs, idFromURL, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+            lblModalTitle.Text = "Recipe was updated";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
+        }
+        catch (Exception ex)
+        {
+            lblModalTitle.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
+        }
     }
 }

@@ -37,6 +37,8 @@ public partial class showRecipes : System.Web.UI.Page
         }
     }
 
+
+
     private void DropdownItems()
     {
         try
@@ -61,6 +63,21 @@ public partial class showRecipes : System.Web.UI.Page
 
     protected void ddCategory_SelectedIndexChanged(object sender, EventArgs e)
     {
+        try
+        {
+            string result = "";
+            string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
+            DataTable dt = CookBook.Data.DBmysql.GetRecipeByGategory(cs, ddCategory.SelectedValue);
+            foreach (DataRow dr in dt.Rows)
+            {
+                result += "<div class='media list-group-item'><a class='media-left waves-light' href='recipe.aspx?id=" + dr["id"].ToString() + "'><img class='rounded-circle' height='100' width='100' src='Images/foodpng.jpg' alt='Generic placeholder image'></a><div class='media-body '><h2 class='media-heading'>" + dr["title"].ToString() + "</h2><p>" + dr["description"].ToString() + "</p></div></div>";
+            }
+            divData.InnerHtml = result;
+        }
+        catch (Exception ex)
+        {
 
+            lblModalTitle.Text=ex.Message;
+        }
     }
 }
