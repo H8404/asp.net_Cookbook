@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
+<%@ Import Namespace="System.Web.Security" %>
 
 <!DOCTYPE html>
 
@@ -6,6 +7,8 @@
 <head runat="server">
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="CSS/login.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Log in to cookbook</title>
 </head>
 <body>
@@ -16,7 +19,7 @@
                     <h2>Log in to CookBook</h2>
                     <div class="form-group">
                         <label>Username:</label>
-                        <asp:TextBox runat="server" TextMode="Email" CssClass="form-control" ID="tbEmail"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="form-control" ID="tbUsername"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>Password:</label>
@@ -26,6 +29,28 @@
                 </div>
             </div>
         </div>
+         <!-- Bootstrap Modal Dialog -->
+    <div class="modal fade"  id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="z-index:2">
+            <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
+            </div>
+            <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
     </form>
 </body>
 </html>

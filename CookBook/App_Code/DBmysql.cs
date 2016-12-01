@@ -13,11 +13,11 @@ namespace CookBook.Data
 {
     public class DBmysql
     {
-        public static DataTable GetRecipeInfo(string cs)
+        public static DataTable GetRecipeInfo(string cs, string uid)
         {
             try
             {
-                string sql = "SELECT * FROM recipes ";
+                string sql = "SELECT * FROM recipes WHERE U_id =" + uid;
                 using (MySqlConnection conn = new MySqlConnection(cs))
                 {
                     conn.Open();
@@ -82,7 +82,7 @@ namespace CookBook.Data
             }
         }
 
-        public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps)
+        public static void InsertIntoRecipe(string cs, string title, string description, string category, string ingredients, string steps, string uid)
         {
             var con = new MySqlConnection(cs);
             try
@@ -94,7 +94,7 @@ namespace CookBook.Data
                 command.Parameters.AddWithValue("@category", category);
                 command.Parameters.AddWithValue("@ingredients", ingredients);
                 command.Parameters.AddWithValue("@steps", steps);
-                command.Parameters.AddWithValue("@U_id", 1);
+                command.Parameters.AddWithValue("@U_id", uid);
                 con.Open();
                 command.ExecuteNonQuery();
             }
@@ -109,7 +109,7 @@ namespace CookBook.Data
             }
         }
 
-        public static void EditRecipe(string cs,string id, string title, string description, string category, string ingredients, string steps)
+        public static void EditRecipe(string cs,string id, string title, string description, string category, string ingredients, string steps, string uid)
         {
             var con = new MySqlConnection(cs);
             try
@@ -122,13 +122,12 @@ namespace CookBook.Data
                 command.Parameters.AddWithValue("@category", category);
                 command.Parameters.AddWithValue("@ingredients", ingredients);
                 command.Parameters.AddWithValue("@steps", steps);
-                command.Parameters.AddWithValue("@U_id", 1);
+                command.Parameters.AddWithValue("@U_id", uid);
                 con.Open();
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -258,6 +257,34 @@ namespace CookBook.Data
             {
 
                 throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public static DataTable LogIn(string cs, string uname, string pword)
+        {
+            var con = new MySqlConnection(cs);
+            DataTable dt = new DataTable();
+            try
+            {
+                MySqlCommand command = con.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT * FROM users WHERE username=@UserName AND password = MD5(@Password)";
+                command.Parameters.AddWithValue("@UserName", uname);
+                command.Parameters.AddWithValue("@Password", pword);
+                con.Open();
+                command.ExecuteNonQuery();
+                MySqlDataAdapter da = new MySqlDataAdapter(command);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                
             }
             finally
             {

@@ -18,7 +18,7 @@ public partial class addRecipe : System.Web.UI.Page
         try
         {
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+            CookBook.Data.DBmysql.InsertIntoRecipe(cs, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text, Session["id"].ToString());
             lblModalTitle.Text = "Recipe was added succesfully!";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();

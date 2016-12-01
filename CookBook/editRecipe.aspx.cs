@@ -26,7 +26,7 @@ public partial class editRecipe : System.Web.UI.Page
         {
             string idFromURL = Request.QueryString["id"];
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            CookBook.Data.DBmysql.EditRecipe(cs, idFromURL, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text);
+            CookBook.Data.DBmysql.EditRecipe(cs, idFromURL, tbTitle.Text, tbDescription.Text, tbCategory.Text, tbIngredients.Text, tbSteps.Text, Session["id"].ToString());
             lblModalTitle.Text = "Recipe was updated";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();
