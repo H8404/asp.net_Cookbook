@@ -13,6 +13,29 @@ namespace CookBook.Data
 {
     public class DBmysql
     {
+
+        public static void InsertIntoUsers(string cs, string username, string password)
+        {
+            var con = new MySqlConnection(cs);
+            try
+            {
+                MySqlCommand command = con.CreateCommand();
+                command.CommandText = "INSERT INTO users (username,password) VALUES (@uname,MD5(@pword))";
+                command.Parameters.AddWithValue("@uname", username);
+                command.Parameters.AddWithValue("@pword", password);
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         public static DataTable GetRecipeInfo(string cs, string uid)
         {
             try
@@ -63,7 +86,7 @@ namespace CookBook.Data
         {
             try
             {
-                string sql = "SELECT * FROM recipes WHERE category=" + category;
+                string sql = "SELECT * FROM recipes WHERE category = '" + category +"';";
                 using (MySqlConnection conn = new MySqlConnection(cs))
                 {
                     conn.Open();

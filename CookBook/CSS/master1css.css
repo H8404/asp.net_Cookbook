@@ -9,11 +9,12 @@
     border-radius: 0;
 }
 
+
 .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
 }
 
-.navbar-nav li a:hover, .navbar-nav li.active a {
+.navbar-nav li a:hover, .navbar-nav li.active a, .navbar li #btnLogout:hover {
     color: #ff944d !important;
     background-color: #fff !important;
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master1.master" AutoEventWireup="true" CodeFile="showRecipes.aspx.cs" Inherits="showRecipes" %>
+﻿<%@ Page Title="Your Recipes" Language="C#" MasterPageFile="~/Master1.master" AutoEventWireup="true" CodeFile="showRecipes.aspx.cs" Inherits="showRecipes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -8,12 +8,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container-fluid">
             <div class="col-md-6 col-md-offset-3 bg-grey row">
-                    <div class="dropdown open"  >
-                        <asp:DropDownList CssClass="dropdown-menu" aria-labelledby="dropdownMenuButton" ID="ddCategory" runat="server" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged"  >
+                    <div class="dropdown open" style="z-index:0" >
+                        <asp:DropDownList CssClass="dropdown-menu" aria-labelledby="dropdownMenuButton" ID="ddCategory" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddCategory_SelectedIndexChanged"  >
                             <asp:ListItem >Select Category</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                <div runat="server" id="divData" class="row" style="margin-top:60px;">
+                <div runat="server" id="divData" class="row" style="margin-top:60px; margin-bottom:20px;">
 
                 </div>
             </div>

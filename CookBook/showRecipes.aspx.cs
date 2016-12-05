@@ -65,19 +65,28 @@ public partial class showRecipes : System.Web.UI.Page
     {
         try
         {
-            string result = "";
             string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            DataTable dt = CookBook.Data.DBmysql.GetRecipeByGategory(cs, ddCategory.SelectedValue);
-            foreach (DataRow dr in dt.Rows)
+            if (ddCategory.SelectedValue == "Select Category")
             {
-                result += "<div class='media list-group-item'><a class='media-left waves-light' href='recipe.aspx?id=" + dr["id"].ToString() + "'><img class='rounded-circle' height='100' width='100' src='Images/foodpng.jpg' alt='Generic placeholder image'></a><div class='media-body '><h2 class='media-heading'>" + dr["title"].ToString() + "</h2><p>" + dr["description"].ToString() + "</p></div></div>";
+                divData.InnerHtml = GetRecipeFromDatabase();
             }
-            divData.InnerHtml = result;
+            else
+            {
+                string result = "";
+                DataTable dt = CookBook.Data.DBmysql.GetRecipeByGategory(cs, ddCategory.SelectedValue);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result += "<div class='media list-group-item'><a class='media-left waves-light' href='recipe.aspx?id=" + dr["id"].ToString() + "'><img class='rounded-circle' height='100' width='100' src='Images/foodpng.jpg' alt='Generic placeholder image'></a><div class='media-body '><h2 class='media-heading'>" + dr["title"].ToString() + "</h2><p>" + dr["description"].ToString() + "</p></div></div>";
+                }
+                divData.InnerHtml = result;
+            }
         }
         catch (Exception ex)
         {
 
             lblModalTitle.Text=ex.Message;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+            upModal.Update();
         }
     }
 }

@@ -29,7 +29,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="addRecipe.aspx">ADD RECIPE</a></li>
                             <li><a href="showRecipes.aspx">VIEW RECIPES</a></li>
-                            <li><asp:Button runat="server" ID="btnLogout" Text="LOGOUT" OnClick="btnLogout_Click" /></li>
+                            <li><asp:LinkButton runat="server" ID="btnLogout" Text="LOGOUT" OnClick="btnLogout_Click" /></li>
                         </ul>
                     </div>
                 </div>
