@@ -30,16 +30,16 @@
                     <label>Steps: </label>
                     <asp:TextBox ID="tbSteps" runat="server" Height="250px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label>Picture of endproduct</label>
                     <br />
-                    <label class="btn btn-default btn-file">
-                        Browse <asp:FileUpload id="FileUploadControl" runat="server"  onchange="$('#upload-file-info').html($(this).val());"/>
+                    <label class="btn btn-default btn-file" style="color:#ff944d">
+                        Browse <asp:FileUpload id="FileUploadControl" runat="server"   onchange="$('#upload-file-info').html($(this).val());"/>
                     </label>
                     <span class='label label-info' id="upload-file-info"></span>
-                </div>
+                </div>-->
                 <div class="form-group">
-                    <asp:Button ID="btnSaveToDatabase" runat="server" Text="Save" CssClass="btn btn-default"  OnClick="btnSaveToDatabase_Click"/>
+                    <asp:Button ID="btnSaveToDatabase" runat="server" style="color:#ff944d" Text="Save" CssClass="btn btn-default"  OnClick="btnSaveToDatabase_Click"/>
                 </div>
             </div>
         </div>

@@ -9,14 +9,14 @@
     <link href="CSS/login.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Log into cookbook</title>
+    <title>Log in to cookbook</title>
 </head>
 <body>
     <form id="form1" runat="server" style="height:100%">
         <div class="container container-table">
             <div class="row vertical-center-row">
                 <div class="text-center col-md-4 col-md-offset-4 well well-lg loginform">
-                    <h2>Log into CookBook</h2>
+                    <h2>Log in to CookBook</h2>
                     <div class="form-group">
                         <label>Username:</label>
                         <asp:TextBox runat="server" CssClass="form-control" ID="tbUsername"></asp:TextBox>
@@ -26,7 +26,7 @@
                         <asp:TextBox runat="server" TextMode="Password" ID="tbPasword" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-default" Text="Submit" OnClick="btnLogin_Click"></asp:Button>
+                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-default" Text="OK" OnClick="btnLogin_Click"></asp:Button>
                     </div>
                     <label>Don't have an account? You can signup </label><a href="signup.aspx" style="color:#ffffff"> here</a>
                 </div>

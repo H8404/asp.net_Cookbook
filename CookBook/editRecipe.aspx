@@ -31,15 +31,8 @@
                     <asp:TextBox ID="tbSteps" runat="server" Height="250px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <label>Picture of endproduct</label>
-                    <br />
-                    <label class="btn btn-default btn-file">
-                        Browse <asp:FileUpload id="FileUploadControl" runat="server"  onchange="$('#upload-file-info').html($(this).val());"/>
-                    </label>
-                    <span class='label label-info' id="upload-file-info"></span>
-                </div>
-                <div class="form-group">
-                    <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" CssClass="btn btn-default"  OnClick="btnSaveChanges_Click" />
+                    <asp:Button ID="btnSaveChanges" runat="server" style="color:#ff944d" Text="Save Changes" CssClass="btn btn-default"  OnClick="btnSaveChanges_Click" />
+                    <asp:Button ID="btnCancel" runat="server" style="color:#ff944d" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_Click" />
                 </div>
             </div>
         </div>

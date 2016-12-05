@@ -38,4 +38,10 @@ public partial class editRecipe : System.Web.UI.Page
             upModal.Update();
         }
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        string idFromURL = Request.QueryString["id"];
+        Response.Redirect("recipe.aspx?id=" + idFromURL);
+    }
 }

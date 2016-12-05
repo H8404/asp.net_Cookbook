@@ -20,6 +20,7 @@ public partial class signup : System.Web.UI.Page
             {
                 string cs = System.Configuration.ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
                 CookBook.Data.DBmysql.InsertIntoUsers(cs, tbUsername.Text, tbPasword.Text);
+                Response.Redirect("login.aspx");
             }
             catch (Exception ex)
             {
@@ -30,7 +31,7 @@ public partial class signup : System.Web.UI.Page
 
         }else
         {
-            lblModalTitle.Text = "Password is wrong";
+            lblModalTitle.Text = "Passwords don't match!";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();
         }
