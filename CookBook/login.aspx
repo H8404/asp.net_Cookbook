@@ -16,7 +16,7 @@
         <div class="container container-table">
             <div class="row vertical-center-row">
                 <div class="text-center col-md-4 col-md-offset-4 well well-lg loginform">
-                    <h2>Log in to CookBook</h2>
+                    <h2>Log in</h2>
                     <div class="form-group">
                         <label>Username:</label>
                         <asp:TextBox runat="server" CssClass="form-control" ID="tbUsername"></asp:TextBox>
